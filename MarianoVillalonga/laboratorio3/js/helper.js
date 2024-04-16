@@ -2,6 +2,7 @@ function sumar() {
     var numero1 = parseInt(document.getElementById('numero1').value);
     var numero2 = parseInt(document.getElementById('numero2').value);
     var mensaje = "";
+    
     if (isNaN(numero1) || isNaN(numero2)) {
         mensaje = "Por favor ingresa números en ambos campos.";
     } else {
@@ -52,4 +53,30 @@ function compararCadenas() {
     document.getElementById("resultado1").textContent = "LA MAYOR ES: " + resultado;
     document.getElementById("resultado2").textContent = "LAS CADENAS CONCATENADAS QUEDAN: " + concatenadas;
     document.getElementById("resultado3").textContent = "LA CADENA MÁS LARGA ES: " + masLarga + " Y TIENE " + masLarga.length + " CARACTERES";
+}
+
+function contarVocales() {
+    var texto = document.getElementById("inputText").value;
+    texto = texto.toLowerCase();
+    var vocales = {
+        'a': 0,
+        'e': 0,
+        'i': 0,
+        'o': 0,
+        'u': 0
+    };
+
+    for (var i = 0; i < texto.length; i++) {
+        var letra = texto[i];
+        if (vocales.hasOwnProperty(letra)) {
+            vocales[letra]++;
+        }
+    }
+
+    var resultadoHTML = "<p>Total de vocales: " + Object.values(vocales).reduce((a, b) => a + b) + "</p>";
+    for (var vocal in vocales) {
+        resultadoHTML += "<p>Apariciones de " + vocal + ": " + vocales[vocal] + "</p>";
+    }
+
+    document.getElementById("resultadoContarVocales").innerHTML = resultadoHTML;
 }
